@@ -6,13 +6,13 @@
 	<artifactId>batchprocessapi</artifactId>
 	<version>0.0.1</version>
 	<packaging>mule</packaging>
-	<name>Batch Process Api</name>
+	<name>BatchProcess</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<mule.version>3.8.4</mule.version>
+		<mule.version>3.8.5</mule.version>
 		<mule.tools.version>1.2</mule.tools.version>
 	<munit.version>1.3.2</munit.version>
     <mule.munit.support.version>3.8.3</mule.munit.support.version>
