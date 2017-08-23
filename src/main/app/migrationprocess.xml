@@ -18,9 +18,7 @@ http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mu
             <poll doc:name="Poll">
                 <schedulers:cron-scheduler expression="0 0 * 15"/>
                 <watermark variable="new" default-expression="recentfiles" selector="MAX" selector-expression="#[payload.LastModifiedDate]"/>
-                <sftp:outbound-endpoint exchange-pattern="one-way" host="${sftp.host}" port="${sftp.port}" responseTimeout="10000" doc:name="SFTP" connector-ref="SFTP" mimeType="application/csv" password="${sftp.password}" path="${sftp.path}" user="${sftp.username}">
-                    <reconnect frequency="${sftp.frequency}" count="${sftp.reconnection}"/>
-                </sftp:outbound-endpoint>
+                <sftp:outbound-endpoint exchange-pattern="one-way" host="${sftp.host}" port="${sftp.port}" responseTimeout="10000" doc:name="SFTP" connector-ref="SFTP" mimeType="application/csv" password="${sftp.password}" path="${sftp.path}" user="${sftp.username}"/>
             </poll>
         </batch:input>
         <batch:process-records>
@@ -36,7 +34,10 @@ http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mu
                 </dw:transform-message>
             </batch:step>
             <batch:step name="RouteRecordToAMQ" accept-expression="#[payload]">
+                <logger level="INFO" doc:name="Logger"/>
+                <!-- 
                 <anypoint-mq:publish config-ref="Anypoint_MQ_Configuration" destination="${amq.destination}" doc:name="RouteToTopic"/>
+            	 -->
             </batch:step>
             <batch:step name="LogFailureSteps" accept-policy="ONLY_FAILURES" accept-expression="#[]">
                 <logger level="ERROR" doc:name="Logger" message="This record is not valid: #[payload]"/>

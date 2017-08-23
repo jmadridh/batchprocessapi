@@ -10,10 +10,12 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mulesoft.org/schema/mule/secure-property-placeholder/current/mule-secure-property-placeholder.xsd
 http://www.mulesoft.org/schema/mule/anypoint-mq http://www.mulesoft.org/schema/mule/anypoint-mq/current/mule-anypoint-mq.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd">
-
+	
+	
+    <context:property-placeholder location="${mule.env}.properties" ignore-unresolvable="true"/>
 	
 	<sftp:connector name="SFTP"    validateConnections="true" doc:name="SFTP">
-        <reconnect frequency="${sftp.frequency}" count="${sftp.reconnection}"/>
+        <reconnect frequency="10000" count="5"/>
     </sftp:connector>
     
     <configuration doc:name="Configuration">
@@ -26,9 +28,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     	</expression-language>
     </configuration>
     <anypoint-mq:config name="Anypoint_MQ_Configuration" doc:name="Anypoint MQ Configuration">
-        <anypoint-mq:provider url="${amq.url}" clientId="${amq.clientId}" clientSecret="${amq.clientSecret}"/>
+        <anypoint-mq:provider url="${amq.url}" clientId="${amq.clientid}" clientSecret="${amq.clientsecret}"/>
     </anypoint-mq:config>
-    <context:property-placeholder location="${mule.env}.properties"/>
+    <secure-property-placeholder:config name="Secure_Property_Placeholder" key="${secure.key}" location="${mule.env}.properties" doc:name="Secure Property Placeholder"/>
     
     
 
