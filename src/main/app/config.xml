@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:anypoint-mq="http://www.mulesoft.org/schema/mule/anypoint-mq" xmlns:sftp="http://www.mulesoft.org/schema/mule/sftp"
+<mule xmlns:context="http://www.springframework.org/schema/context" xmlns:anypoint-mq="http://www.mulesoft.org/schema/mule/anypoint-mq" xmlns:sftp="http://www.mulesoft.org/schema/mule/sftp"
 	xmlns:secure-property-placeholder="http://www.mulesoft.org/schema/mule/secure-property-placeholder" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,10 +8,11 @@
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mulesoft.org/schema/mule/secure-property-placeholder/current/mule-secure-property-placeholder.xsd
-http://www.mulesoft.org/schema/mule/anypoint-mq http://www.mulesoft.org/schema/mule/anypoint-mq/current/mule-anypoint-mq.xsd">
-    <secure-property-placeholder:config name="Secure_Property_Placeholder" key="${runtime}" location="${mule.env}.properties" doc:name="Secure Property Placeholder"/>
+http://www.mulesoft.org/schema/mule/anypoint-mq http://www.mulesoft.org/schema/mule/anypoint-mq/current/mule-anypoint-mq.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd">
+
 	
-	<sftp:connector name="SFTP" outputPattern="${sftp.outputpattern}" identityFile="${sftp.identityfile}" passphrase="${sftp.passphrase}" validateConnections="true" doc:name="SFTP">
+	<sftp:connector name="SFTP"    validateConnections="true" doc:name="SFTP">
         <reconnect frequency="${sftp.frequency}" count="${sftp.reconnection}"/>
     </sftp:connector>
     
@@ -27,6 +28,7 @@ http://www.mulesoft.org/schema/mule/anypoint-mq http://www.mulesoft.org/schema/m
     <anypoint-mq:config name="Anypoint_MQ_Configuration" doc:name="Anypoint MQ Configuration">
         <anypoint-mq:provider url="${amq.url}" clientId="${amq.clientId}" clientSecret="${amq.clientSecret}"/>
     </anypoint-mq:config>
+    <context:property-placeholder location="${mule.env}.properties"/>
     
     
 

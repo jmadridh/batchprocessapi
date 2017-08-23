@@ -3,5 +3,4 @@
     <name>batchprocessapi</name>
     <description></description>
     <muleExtension name="Secure Property Placeholder" qualifier="org.mule.tooling.ui.contribution.secure-property-placeholder.3.8.1"/>
-    <muleExtension name="Anypoint MQ" qualifier="org.mule.tooling.messaging.contribution"/>
 </mule-project>
