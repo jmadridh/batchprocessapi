@@ -32,6 +32,10 @@
 					<copyToAppsDirectory>true</copyToAppsDirectory>
 					<inclusions>
 						<inclusion>
+							<groupId>com.mulesoft.security</groupId>
+							<artifactId>mule-module-security-property-placeholder</artifactId>
+						</inclusion>
+						<inclusion>
 							<groupId>com.mulesoft.muleesb.modules</groupId>
 							<artifactId>mule-module-anypoint-mq-ee</artifactId>
 						</inclusion>
@@ -159,6 +163,13 @@
 			<version>${mule.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- security property placeholder -->		 
+ 		<dependency>  
+ 			<groupId>com.mulesoft.security</groupId>  
+ 			<artifactId>mule-module-security-property-placeholder</artifactId>  
+ 			<version>1.6.5</version>  
+ 		</dependency>  
+		
 		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-schedulers</artifactId>

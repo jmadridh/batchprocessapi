@@ -13,13 +13,12 @@ http://www.mulesoft.org/schema/mule/anypoint-mq http://www.mulesoft.org/schema/m
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
 http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
     
+    
     <batch:job name="migrationprocess">
         <batch:input>
-            <poll doc:name="Poll">
-                <schedulers:cron-scheduler expression="0 0 * 15"/>
-                <watermark variable="new" default-expression="recentfiles" selector="MAX" selector-expression="#[payload.LastModifiedDate]"/>
-                <sftp:outbound-endpoint exchange-pattern="one-way" host="${sftp.host}" port="${sftp.port}" responseTimeout="10000" doc:name="SFTP" connector-ref="SFTP" mimeType="application/csv" password="${sftp.password}" path="${sftp.path}" user="${sftp.username}"/>
-            </poll>
+            
+            <sftp:outbound-endpoint exchange-pattern="one-way"   responseTimeout="10000" doc:name="SFTP"      ref="SFTP_Global_Properties" />
+        
         </batch:input>
         <batch:process-records>
             <batch:step name="EachRecordFile" accept-expression="#[!recordVars.exist]">
