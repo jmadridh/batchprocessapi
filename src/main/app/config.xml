@@ -19,7 +19,7 @@ http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/
 	
 	<context:property-placeholder location="${mule.env}.properties"
 		ignore-unresolvable="true" />
-	<sftp:endpoint exchange-pattern="one-way"  host="${sftp.host}" port="${sftp.port}" path="${sftp.path}" user="${sftp.username}" password="${sftp.password}" name="SFTP_Global_Properties" responseTimeout="10000" doc:name="SFTP" pollingFrequency="10000">
+	<sftp:endpoint host="${sftp.host}" port="${sftp.port}" path="${sftp.path}" user="${sftp.username}" password="${sftp.password}" name="SFTP_Global_Properties" responseTimeout="10000" doc:name="SFTP" pollingFrequency="10000">
         <reconnect  frequency="10000"/>
     </sftp:endpoint>	
 	<sftp:connector name="SFTP" validateConnections="true" doc:name="SFTP" keepFileOnError="true">
@@ -45,4 +45,5 @@ http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/
 		doc:name="Secure Property Placeholder" />
 
 
+	<endpoint name="Generic" doc:name="Generic" exchange-pattern="one-way" address="a" mimeType="application/json"/>
 </mule>
