@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:jms="http://www.mulesoft.org/schema/mule/jms"
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:jms="http://www.mulesoft.org/schema/mule/jms"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:anypoint-mq="http://www.mulesoft.org/schema/mule/anypoint-mq"
 	xmlns:sftp="http://www.mulesoft.org/schema/mule/sftp"
@@ -9,7 +9,8 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/sftp http://www.mulesoft.org/schema/mule/sftp/current/mule-sftp.xsd
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/sftp http://www.mulesoft.org/schema/mule/sftp/current/mule-sftp.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mulesoft.org/schema/mule/secure-property-placeholder/current/mule-secure-property-placeholder.xsd
@@ -19,7 +20,7 @@ http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/
 	
 	<context:property-placeholder location="${mule.env}.properties"
 		ignore-unresolvable="true" />
-	<sftp:endpoint host="${sftp.host}" port="${sftp.port}" path="${sftp.path}" user="${sftp.username}" password="${sftp.password}" name="SFTP_Global_Properties" responseTimeout="10000" doc:name="SFTP" pollingFrequency="10000">
+	<sftp:endpoint host="${sftp.host}" port="${sftp.port}" path="${sftp.path}" user="${sftp.username}" password="${sftp.password}" name="SFTP_Global_Properties" responseTimeout="10000" doc:name="SFTP" pollingFrequency="10000" exchange-pattern="request-response">
         <reconnect  frequency="10000"/>
     </sftp:endpoint>	
 	<sftp:connector name="SFTP" validateConnections="true" doc:name="SFTP" keepFileOnError="true">
@@ -45,5 +46,5 @@ http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/
 		doc:name="Secure Property Placeholder" />
 
 
-	<endpoint name="Generic" doc:name="Generic" exchange-pattern="one-way" address="a" mimeType="application/json"/>
+	<endpoint name="Generic" doc:name="Generic"  address="a" mimeType="application/json"/>
 </mule>
