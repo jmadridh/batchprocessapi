@@ -17,7 +17,7 @@ http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mu
     
     <batch:job name="migrationprocess">
         <batch:input>    
-            <sftp:inbound-endpoint exchange-pattern="one-way" responseTimeout="10000" doc:name="SFTP" ref="SFTP_Global_Properties">
+            <sftp:inbound-endpoint exchange-pattern="one-way" responseTimeout="10000" doc:name="SFTP" ref="SFTP_Inbound_Properties">
                 <file:filename-wildcard-filter pattern="*.txt" caseSensitive="false"/>
             </sftp:inbound-endpoint>
         </batch:input>
